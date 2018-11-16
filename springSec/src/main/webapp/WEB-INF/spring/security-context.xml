@@ -28,13 +28,13 @@
 		/>
 		
 	</http>
+	
+	<beans:bean id="memberService" class="com.spring.study.service.MemberService"></beans:bean>
+	<beans:bean id="customAuthenticationProvider" class="com.spring.study.security.CustomAuthenticationProvider"></beans:bean>
 
-	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="user" password="pass" authorities="ROLE_USER"/>
-			</user-service>
-		</authentication-provider>
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="customAuthenticationProvider" />
+		<authentication-provider user-service-ref="memberService" />
 	</authentication-manager>
 
 </beans:beans>

@@ -12,6 +12,10 @@ public class MemberDao {
 	private SqlSession session;
 	
 	public Member test() {
-		return session.selectOne("member.test");
+		return session.selectOne("MemberMapper.test");
+	}
+	
+	public Member getMemberById(Member member) {
+		return session.selectOne("MemberMapper.getMemberById", member);
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.study.bean.Member;
 import com.spring.study.service.MemberService;
 
 /**
@@ -29,11 +30,9 @@ public class HomeController {
 	 */
 	@RequestMapping(value={"/", "/info"}, method=RequestMethod.GET)
 	public String home(Model model) {
-		
-		memberService.test();
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
-		logger.info(user.toString());
+		Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("member", member);
+		logger.info(member.toString());
 		
 		return "home";
 	}
