@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.study.bean.Member;
 
-@Repository
+@Repository("memberDao")
 public class MemberDao {
 	@Autowired
 	private SqlSession session;
