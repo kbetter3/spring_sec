@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.study.service.MemberService;
 
@@ -26,18 +27,21 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value={"/", "/info"}, method=RequestMethod.GET)
 	public String home(Model model) {
 		
 		memberService.test();
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		logger.info(user.toString());
 		
 		return "home";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String loginPage(Model model) {
+	public String loginPage(@RequestParam(value="error", required=false) String error, Model model) {
+		model.addAttribute("error", error);
+		logger.info("error : " + error);
 		return "login";
 	}
 	

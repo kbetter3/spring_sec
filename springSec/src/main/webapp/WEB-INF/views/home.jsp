@@ -22,6 +22,8 @@
 		</tr>
 	</table>
 	
+	<div>${user}</div>
+	
 	<form action="./logout" method="post">
 		<sec:csrfInput/>
 		<button type="submit">logout</button>
