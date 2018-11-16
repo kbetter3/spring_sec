@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +13,15 @@
 </head>
 <body>
 	<h1>로그인</h1>
-	<form>
-		<input type="text" name="id"></br>
-		<input type="password" name="pw"></br>
-		<button type="submit">로그인</button>
+	<form action="j_spring_security_check" method="post">
+		<sec:csrfInput/>
+		아이디 : <input type="text" name="id"></br>
+		비밀번호 : <input type="password" name="pw"></br>
+		<input type="submit" value="로그인">
 	</form>
-	<a href="/register">회원가입</a>
+	<a href="${pageContext.request.contextPath}/register">회원가입</a>
+	
+	<br/>
 
 </body>
 </html>

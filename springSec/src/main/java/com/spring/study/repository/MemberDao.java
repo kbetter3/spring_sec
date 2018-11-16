@@ -6,12 +6,16 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.study.bean.Member;
 
-@Repository
+@Repository("memberDao")
 public class MemberDao {
 	@Autowired
 	private SqlSession session;
 	
-	public Member test() {
-		return session.selectOne("member.test");
+	public Member test(Member member) {
+		return session.selectOne("MemberMapper.test", member);
+	}
+	
+	public Member getMemberById(Member member) {
+		return session.selectOne("MemberMapper.selectMemberById", member);
 	}
 }
