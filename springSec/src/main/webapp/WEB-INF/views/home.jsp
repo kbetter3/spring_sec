@@ -6,10 +6,19 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+	<h1>회원정보</h1>
+	<table>
+		<tr>
+			<th>회원번호</th>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>회원등급</th>
+		</tr>
+		<tr>
+<%-- 			<td>${member.seq }</td> --%>
+<%-- 			<td>${member.id }</td> --%>
+<%-- 			<td>${member.name }</td> --%>
+		</tr>
+	</table>
 </body>
 </html>
