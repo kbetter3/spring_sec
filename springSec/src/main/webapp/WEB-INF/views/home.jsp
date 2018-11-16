@@ -16,9 +16,15 @@
 			<th>회원등급</th>
 		</tr>
 		<tr>
-<%-- 			<td>${member.seq }</td> --%>
-<%-- 			<td>${member.id }</td> --%>
-<%-- 			<td>${member.name }</td> --%>
+			<td>${member.seq }</td>
+			<td>${member.id }</td>
+			<td>${member.name }</td>
+			<td>
+				<c:choose>
+					<c:when test="${member.power == 1}">관리자</c:when>
+					<c:otherwise>일반회원</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 	</table>
 	

@@ -30,9 +30,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value={"/", "/info"}, method=RequestMethod.GET)
 	public String home(Model model) {
-		Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Member member = memberService.loadUserByUsername((String)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		model.addAttribute("member", member);
-		logger.info(member.toString());
 		
 		return "home";
 	}
