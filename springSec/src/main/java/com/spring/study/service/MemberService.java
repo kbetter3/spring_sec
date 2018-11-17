@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.study.bean.Member;
@@ -16,6 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService implements UserDetailsService {
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public void test() {
 		log.info("test log √‚∑∞");
@@ -40,6 +44,7 @@ public class MemberService implements UserDetailsService {
 	}
 	
 	public void registerMember(Member member) {
+		member.setPw(passwordEncoder.encode(member.getPw()));
 		memberDao.insertMember(member);
 	}
 }

@@ -28,7 +28,9 @@
 		</tr>
 	</table>
 	
-	<div>${user}</div>
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
+		<div><a href="./manage">회원관리</a></div>
+	</sec:authorize>
 	
 	<form action="./logout" method="post">
 		<sec:csrfInput/>

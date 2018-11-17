@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,9 @@ public class HomeController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -31,6 +35,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value={"/", "/info"}, method=RequestMethod.GET)
 	public String home(Model model) {
+		logger.info("home - auth : " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		Member member = memberService.loadUserByUsername((String)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		model.addAttribute("member", member);
 		
@@ -40,7 +45,7 @@ public class HomeController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginPage(@RequestParam(value="error", required=false) String error, Model model) {
 		model.addAttribute("error", error);
-		logger.info("error : " + error);
+
 		return "login";
 	}
 	
@@ -56,4 +61,9 @@ public class HomeController {
 		
 		return "redirect:/login";
 	}
+	
+//	@RequestMapping(value="/manage", method=RequestMethod.GET)
+//	public String managePage(Model model) {
+//		return "manage";
+//	}
 }
