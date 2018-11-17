@@ -38,4 +38,8 @@ public class MemberService implements UserDetailsService {
 		
 		return member;
 	}
+	
+	public void registerMember(Member member) {
+		memberDao.insertMember(member);
+	}
 }

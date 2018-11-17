@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +45,15 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
-	public  String registerPage() {
+	public String registerPage() {
 		return "register";
+	}
+	
+	@RequestMapping(value="/register", method=RequestMethod.POST)
+	public String registerProc(@ModelAttribute("member") Member member) {
+		logger.info("register - post : " + member);
+		memberService.registerMember(member);
+		
+		return "redirect:/login";
 	}
 }

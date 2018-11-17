@@ -18,4 +18,8 @@ public class MemberDao {
 	public Member getMemberById(Member member) {
 		return session.selectOne("MemberMapper.getMemberById", member);
 	}
+	
+	public void insertMember(Member member) {
+		session.insert("MemberMapper.insertMember", member);
+	}
 }
