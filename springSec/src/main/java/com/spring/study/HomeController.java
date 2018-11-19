@@ -61,8 +61,21 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
-//	@RequestMapping(value="/admin", method=RequestMethod.GET)
-//	public String managePage(Model model) {
-//		return "admin/userlist";
-//	}
+	@RequestMapping(value="/admin", method=RequestMethod.GET)
+	public String managePage(Model model) {
+		return "admin/userlist";
+	}
+	
+	@RequestMapping(value="/denied", method=RequestMethod.GET)
+	public String deniedPage() {
+		logger.info("실행되었음");
+		return "denied";
+	}
+	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public String testPage() {
+		logger.info("" + SecurityContextHolder.getContext().getAuthentication());
+		
+		return "test";
+	}
 }

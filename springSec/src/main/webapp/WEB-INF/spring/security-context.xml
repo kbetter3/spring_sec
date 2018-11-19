@@ -9,11 +9,16 @@
  						
 	<context:component-scan base-package="com.spring.study" />
 	
+<!-- 	<http pattern="/resources/**" security="none"></http> -->
+	
 	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/test" access="permitAll"/>
 		<intercept-url pattern="/login" access="isAnonymous()" />
 		<intercept-url pattern="/register" access="isAnonymous()"/>
+		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
 		<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 		
+		<access-denied-handler error-page="/denied"/>
 		
 		<form-login
 		login-page="/login"
