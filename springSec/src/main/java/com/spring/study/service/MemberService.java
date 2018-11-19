@@ -27,8 +27,6 @@ public class MemberService implements UserDetailsService {
 
 	@Override
 	public Member loadUserByUsername(String username) throws UsernameNotFoundException {
-		log.info("username : " + username);
-		
 		Member rMember = new Member();
 		rMember.setId(username);
 		
@@ -37,8 +35,6 @@ public class MemberService implements UserDetailsService {
 		if (member == null) {
 			throw new UsernameNotFoundException("접속자 정보를 찾을 수 없음");
 		}
-		
-		log.info("member : " + member);
 		
 		return member;
 	}

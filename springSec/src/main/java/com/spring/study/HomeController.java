@@ -35,7 +35,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value={"/", "/info"}, method=RequestMethod.GET)
 	public String home(Model model) {
-		logger.info("home - auth : " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		Member member = memberService.loadUserByUsername((String)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 		model.addAttribute("member", member);
 		
@@ -62,8 +61,8 @@ public class HomeController {
 		return "redirect:/login";
 	}
 	
-//	@RequestMapping(value="/manage", method=RequestMethod.GET)
+//	@RequestMapping(value="/admin", method=RequestMethod.GET)
 //	public String managePage(Model model) {
-//		return "manage";
+//		return "admin/userlist";
 //	}
 }

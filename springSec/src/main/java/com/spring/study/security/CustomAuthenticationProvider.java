@@ -30,32 +30,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String id = authentication.getName();
 		String pw = (String) authentication.getCredentials();
 		
-		log.info("memberService : " + memberService);
-		
-//		Member member = null;
-//		
-//		try {
-//			member = memberService.loadUserByUsername(id);
-//			
-//			log.info("provider - member : " + member);
-//			
-//			if (!passwordEncoder.matches(pw, member.getPw())) {
-//				throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
-//			}
-//		} catch (UsernameNotFoundException e) {
-//			log.info(e.toString());
-//			throw new UsernameNotFoundException(e.getMessage());
-//		} catch (BadCredentialsException e) {
-//			log.info("BadCredentialException" + e.toString());
-//			throw new BadCredentialsException(e.getMessage());
-//		} catch (Exception e) {
-//			log.info(e.toString());
-//			throw new RuntimeException(e.getMessage());
-//		}
-		
 		Member member = memberService.loadUserByUsername(id);
-			
-		log.info("provider - member : " + member);
 		
 		if (!passwordEncoder.matches(pw, member.getPw())) {
 			return null;
