@@ -63,6 +63,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/admin", method=RequestMethod.GET)
 	public String managePage(Model model) {
+		model.addAttribute("memberList", memberService.getAllMember());
 		return "admin/userlist";
 	}
 	

@@ -9,6 +9,7 @@
 </head>
 <body>
 
+	<h1>회원리스트</h1>
 	<table>
 		<tr>
 			<th>회원번호</th>
@@ -30,5 +31,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<div>
+		<a href="./info">메인화면</a>
+	</div>
 </body>
 </html>

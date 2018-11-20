@@ -13,4 +13,8 @@
     <insert id="insertMember" parameterType="member">
     	insert into member(id, pw, name) values(#{id}, #{pw}, #{name})
     </insert>
+    
+    <select id="getAllMember" resultType="member">
+    	select * from member order by seq
+    </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.spring.study.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +23,9 @@ public class MemberDao {
 	
 	public void insertMember(Member member) {
 		session.insert("MemberMapper.insertMember", member);
+	}
+	
+	public List<Member> getAllMember() {
+		return session.selectList("MemberMapper.getAllMember");
 	}
 }

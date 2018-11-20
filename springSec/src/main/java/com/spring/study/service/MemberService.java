@@ -1,5 +1,7 @@
 package com.spring.study.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -42,5 +44,9 @@ public class MemberService implements UserDetailsService {
 	public void registerMember(Member member) {
 		member.setPw(passwordEncoder.encode(member.getPw()));
 		memberDao.insertMember(member);
+	}
+	
+	public List<Member> getAllMember() {
+		return memberDao.getAllMember();
 	}
 }
