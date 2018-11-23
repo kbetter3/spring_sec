@@ -1,5 +1,7 @@
 package com.spring.study;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,7 @@ public class HomeController {
 	@RequestMapping(value={"/", "/info"}, method=RequestMethod.GET)
 	public String home(Model model) {
 		Member member = memberService.loadUserByUsername((String)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
 		model.addAttribute("member", member);
 		
 		return "home";
@@ -55,7 +58,6 @@ public class HomeController {
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String registerProc(@ModelAttribute("member") Member member) {
-		logger.info("register - post : " + member);
 		memberService.registerMember(member);
 		
 		return "redirect:/login";
@@ -69,13 +71,14 @@ public class HomeController {
 	
 	@RequestMapping(value="/denied", method=RequestMethod.GET)
 	public String deniedPage() {
-		logger.info("실행되었음");
 		return "denied";
 	}
 	
 	@RequestMapping(value="/test", method=RequestMethod.GET)
 	public String testPage() {
-		logger.info("" + SecurityContextHolder.getContext().getAuthentication());
+		logger.info("priinciple : " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+		logger.info("getname : " + SecurityContextHolder.getContext().getAuthentication().getName());
+		logger.info("details" + SecurityContextHolder.getContext().getAuthentication().getDetails());
 		
 		return "test";
 	}

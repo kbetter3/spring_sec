@@ -8,7 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 public class Member implements UserDetails {
 	private Integer seq;
@@ -19,6 +21,7 @@ public class Member implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+		log.info("get authorities c");
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		
 		switch (this.power) {
@@ -33,10 +36,12 @@ public class Member implements UserDetails {
 	}
 	@Override
 	public String getPassword() {
+		log.info("get password c");
 		return this.pw;
 	}
 	@Override
 	public String getUsername() {
+		log.info("get username c");
 		return this.id;
 	}
 	@Override

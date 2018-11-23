@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service("memberService")
-public class MemberService implements UserDetailsService {
+public class MemberService {// implements UserDetailsService {
 	@Autowired
 	private MemberDao memberDao;
 	
@@ -27,7 +27,7 @@ public class MemberService implements UserDetailsService {
 		log.info("test log √‚∑∞");
 	}
 
-	@Override
+//	@Override
 	public Member loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member rMember = new Member();
 		rMember.setId(username);

@@ -45,7 +45,7 @@
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider ref="customAuthenticationProvider" />
-		<authentication-provider user-service-ref="memberService" />
+<!-- 		<authentication-provider user-service-ref="memberService" /> -->
 	</authentication-manager>
 
 </beans:beans>
